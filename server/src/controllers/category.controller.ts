@@ -14,7 +14,7 @@ export const saveCategory: any = async (req: Request, res: Response) => {
       return res.status(404).json({ message: 'Unable to create category' });
     }
 
-    return res.status(200).json({ data });
+    return res.status(201).json({ data });
   } catch (error) {
     return res.status(404).json({ error });
   }
