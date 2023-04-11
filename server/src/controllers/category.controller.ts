@@ -6,12 +6,12 @@ import {
   saveCategoryService,
 } from '../services/category.service';
 
-export const getCategories: any = async (req: Request, res: Response) => {
+export const saveCategory: any = async (req: Request, res: Response) => {
   try {
-    const data = await getCategoriesService();
+    const data = await saveCategoryService(req.body);
 
     if (isEmpty(data)) {
-      return res.status(404).json({ message: 'No categories found' });
+      return res.status(404).json({ message: 'Unable to create category' });
     }
 
     return res.status(200).json({ data });
@@ -20,12 +20,12 @@ export const getCategories: any = async (req: Request, res: Response) => {
   }
 };
 
-export const saveCategory: any = async (req: Request, res: Response) => {
+export const getCategories: any = async (req: Request, res: Response) => {
   try {
-    const data = await saveCategoryService(req.body);
+    const data = await getCategoriesService();
 
     if (isEmpty(data)) {
-      return res.status(404).json({ message: 'Unable to create category' });
+      return res.status(404).json({ message: 'No categories found' });
     }
 
     return res.status(200).json({ data });

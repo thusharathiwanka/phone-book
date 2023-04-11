@@ -1,18 +1,18 @@
 import { categoryBody } from 'types/category.type';
 import Category from '../models/category.model';
 
-export const getCategoriesService = async () => {
+export const saveCategoryService = async (newCategoryBody: categoryBody) => {
   try {
-    return await Category.find();
+    const newCategory = new Category(newCategoryBody);
+    return await newCategory.save();
   } catch (error) {
     throw new Error('Something went wrong');
   }
 };
 
-export const saveCategoryService = async (newCategoryBody: categoryBody) => {
+export const getCategoriesService = async () => {
   try {
-    const newCategory = new Category(newCategoryBody);
-    return await newCategory.save();
+    return await Category.find();
   } catch (error) {
     throw new Error('Something went wrong');
   }
