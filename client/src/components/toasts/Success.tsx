@@ -1,8 +1,17 @@
+import { useEffect } from 'react';
+
 type Props = {
   message: string;
+  setMessage: React.Dispatch<React.SetStateAction<string>>;
 };
 
-const Success: React.FC<Props> = ({ message }) => {
+const Success: React.FC<Props> = ({ message, setMessage }) => {
+  useEffect(() => {
+    const hiddenTimeout = setTimeout(() => setMessage(''), 3000);
+
+    return () => clearTimeout(hiddenTimeout);
+  }, []);
+
   return (
     <div className="alert alert-success shadow-lg absolute left-1/2 top-10 w-auto -translate-x-1/2">
       <div>

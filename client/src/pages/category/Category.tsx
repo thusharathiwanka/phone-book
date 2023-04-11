@@ -63,8 +63,8 @@ const Category = () => {
   return (
     <div className="max-w-3xl mx-auto">
       <form className=" flex justify-between mt-10" onSubmit={handleSubmit}>
-        {success ? <Success message={success} /> : ''}
-        {error ? <Error message={error} /> : ''}
+        {success ? <Success message={success} setMessage={setSuccess} /> : ''}
+        {error ? <Error message={error} setMessage={setError} /> : ''}
         <input
           type="text"
           ref={inputRef}
@@ -75,7 +75,9 @@ const Category = () => {
       </form>
       <div className="flex flex-wrap mt-10 gap-6">
         {categories?.length > 0 ? (
-          categories.map((category) => <CategoryItem category={category} />)
+          categories.map((category) => (
+            <CategoryItem category={category} key={category._id} />
+          ))
         ) : (
           <Alert message="No categories available." />
         )}
