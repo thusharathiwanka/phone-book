@@ -28,7 +28,7 @@ const Category = () => {
       if (response.ok && inputRef.current !== null) {
         const createdCategory = await response.json();
         setSuccess('Category has been created.');
-        setCategories([...categories, createdCategory.data]);
+        setCategories([...categories, createdCategory]);
         inputRef.current.value = '';
         return;
       }

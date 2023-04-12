@@ -13,7 +13,12 @@ export const createCategory = async (category: string): Promise<Response> => {
 
 export const getCategories = async (): Promise<CategoryI[]> => {
   const response = await fetch(`${BASE_URL}/categories`);
-  const { data } = await response.json();
+  return await response.json();
+};
 
-  return data;
+export const deleteCategory = async (id: string): Promise<CategoryI> => {
+  const response = await fetch(`${BASE_URL}/categories/${id}`, {
+    method: 'DELETE',
+  });
+  return await response.json();
 };
