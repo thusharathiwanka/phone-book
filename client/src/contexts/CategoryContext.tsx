@@ -1,7 +1,6 @@
 import React, { ReactNode, createContext, useEffect, useState } from 'react';
 
 import { CategoryContextI, CategoryI } from '../types/category.type';
-import { BASE_URL } from '../config/app.config';
 import { getCategories } from '../api/category.api';
 
 type Props = {
