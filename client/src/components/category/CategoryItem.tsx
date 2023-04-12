@@ -13,7 +13,7 @@ type Props = {
 const CategoryItem: React.FC<Props> = ({ category }) => {
   const { categories, setCategories } = useCategoryContextProvider();
   const { setSuccess, setError } = useToastContextProvider();
-  const { name, _id } = category;
+  const { name, _id, contacts } = category;
 
   const handleDelete = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -32,6 +32,7 @@ const CategoryItem: React.FC<Props> = ({ category }) => {
     <div className="card w-60 border border-gray-600 rounded-lg">
       <div className="px-6 py-4">
         <h2 className="card-title">{name}</h2>
+        <h2 className="text-gray-500">Contacts - {contacts?.length}</h2>
         <div className="flex justify-between mt-5">
           <Link to={`category/${_id}`} className="btn btn-primary px-5">
             View

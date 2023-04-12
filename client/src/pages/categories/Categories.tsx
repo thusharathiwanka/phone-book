@@ -6,15 +6,13 @@ import useCategoryContextProvider from '../../providers/useCategoryContextProvid
 import { createCategory } from '../../api/category.api';
 import useToastContextProvider from '../../providers/useToastContextProvider';
 
-const Category = () => {
+const Categories = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const { categories, setCategories } = useCategoryContextProvider();
   const { setSuccess, setError } = useToastContextProvider();
 
   const handleSubmit = async (e: FormEvent): Promise<void> => {
     e.preventDefault();
-    setSuccess('');
-    setError('');
 
     const category = inputRef.current?.value;
 
@@ -39,7 +37,7 @@ const Category = () => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto">
+    <>
       <form className=" flex justify-between mt-10" onSubmit={handleSubmit}>
         <input
           type="text"
@@ -58,8 +56,8 @@ const Category = () => {
           <Alert message="No categories available." />
         )}
       </div>
-    </div>
+    </>
   );
 };
 
-export default Category;
+export default Categories;

@@ -8,7 +8,7 @@ const Error: React.FC = () => {
   return (
     <>
       {error ? (
-        <div className="alert alert-error shadow-lg absolute left-1/2 top-10 w-auto -translate-x-1/2">
+        <div className="alert alert-error shadow-lg fixed left-1/2 top-6 w-auto -translate-x-1/2 z-10">
           <div>
             <svg
               xmlns="http://www.w3.org/2000/svg"

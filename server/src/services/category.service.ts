@@ -10,7 +10,7 @@ export const saveCategoryService = async (newCategoryBody: categoryBody) => {
   }
 };
 
-export const getCategoriesService = async () => {
+export const getCategoriesService = async (): Promise<Document[] | null> => {
   try {
     return await Category.find();
   } catch (error) {
@@ -18,7 +18,30 @@ export const getCategoriesService = async () => {
   }
 };
 
-export const deleteCategoryService = async (id: string) => {
+export const getCategoryService = async (
+  id: string
+): Promise<Document | null> => {
+  try {
+    return await Category.findById(id);
+  } catch (error) {
+    throw new Error('Something went wrong');
+  }
+};
+
+export const updateCategoryService = async (
+  id: string,
+  name: string
+): Promise<Document | null> => {
+  try {
+    return await Category.findByIdAndUpdate(id, { name }, { new: true });
+  } catch (error) {
+    throw new Error('Something went wrong');
+  }
+};
+
+export const deleteCategoryService = async (
+  id: string
+): Promise<Document | null> => {
   try {
     return await Category.findByIdAndDelete(id);
   } catch (error) {
