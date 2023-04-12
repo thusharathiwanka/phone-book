@@ -1,11 +1,11 @@
 import { FormEvent, useRef, useState } from 'react';
 
-import { BASE_URL } from '../../config/app.config';
 import CategoryItem from '../../components/category/CategoryItem';
 import Success from '../../components/toasts/Success';
 import Error from '../../components/toasts/Error';
 import Alert from '../../components/toasts/Alert';
-import useCategoryContextProvider from '../../providers/UseCategoryContextProvider';
+import useCategoryContextProvider from '../../providers/useCategoryContextProvider';
+import { createCategory } from '../../api/category.api';
 
 const Category = () => {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -23,13 +23,7 @@ const Category = () => {
     if (!category) return setError('Category cannot be empty!');
 
     try {
-      const response = await fetch(`${BASE_URL}/categories`, {
-        method: 'POST',
-        body: JSON.stringify({ name: category }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+      const response = await createCategory(category);
 
       if (response.ok && inputRef.current !== null) {
         const createdCategory = await response.json();

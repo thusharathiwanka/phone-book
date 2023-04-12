@@ -2,6 +2,7 @@ import React, { ReactNode, createContext, useEffect, useState } from 'react';
 
 import { CategoryContextI, CategoryI } from '../types/category.type';
 import { BASE_URL } from '../config/app.config';
+import { getCategories } from '../api/category.api';
 
 type Props = {
   children: ReactNode;
@@ -20,9 +21,8 @@ const CategoryContextProvider: React.FC<Props> = ({ children }) => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await fetch(`${BASE_URL}/categories`);
-        const data = await response.json();
-        setCategories(data.data);
+        const data = await getCategories();
+        setCategories(data);
       } catch (error) {
         console.log(error);
       }
