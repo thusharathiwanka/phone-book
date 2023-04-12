@@ -1,7 +1,12 @@
+import CategoryContextProvider from './contexts/CategoryContext';
 import NavigationRouter from './router/NavigationRouter';
 
 const App = () => {
-  return <NavigationRouter />;
+  return (
+    <CategoryContextProvider>
+      <NavigationRouter />
+    </CategoryContextProvider>
+  );
 };
 
 export default App;

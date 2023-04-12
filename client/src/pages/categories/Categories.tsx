@@ -1,17 +1,17 @@
-import { FormEvent, useEffect, useRef, useState } from 'react';
+import { FormEvent, useRef, useState } from 'react';
 
 import { BASE_URL } from '../../config/app.config';
-import { CategoryI } from '../../types/category.type';
 import CategoryItem from '../../components/category/CategoryItem';
 import Success from '../../components/toasts/Success';
 import Error from '../../components/toasts/Error';
 import Alert from '../../components/toasts/Alert';
+import useCategoryContextProvider from '../../providers/UseCategoryContextProvider';
 
 const Category = () => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const [categories, setCategories] = useState<CategoryI[]>([]);
   const [success, setSuccess] = useState<string>('');
   const [error, setError] = useState<string>('');
+  const { categories, setCategories } = useCategoryContextProvider();
 
   const handleSubmit = async (e: FormEvent): Promise<void> => {
     e.preventDefault();
@@ -32,7 +32,9 @@ const Category = () => {
       });
 
       if (response.ok && inputRef.current !== null) {
+        const createdCategory = await response.json();
         setSuccess('Category has been created.');
+        setCategories([...categories, createdCategory.data]);
         inputRef.current.value = '';
         return;
       }
@@ -43,22 +45,6 @@ const Category = () => {
       console.log(error);
     }
   };
-
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        setError('');
-        const response = await fetch(`${BASE_URL}/categories`);
-        const data = await response.json();
-        setCategories(data.data);
-      } catch (error) {
-        setError('Something went wrong.');
-        console.log(error);
-      }
-    };
-
-    fetchCategories();
-  }, []);
 
   return (
     <div className="max-w-3xl mx-auto">

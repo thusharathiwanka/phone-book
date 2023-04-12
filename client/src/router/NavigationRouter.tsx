@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import Category from '../pages/category/Category';
+import Category from '../pages/categories/Categories';
 
 const NavigationRouter = () => {
   return (

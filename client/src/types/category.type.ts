@@ -11,3 +11,8 @@ export type ContactI = {
   description: string;
   phone: string;
 };
+
+export type CategoryContextI = {
+  categories: CategoryI[];
+  setCategories: React.Dispatch<React.SetStateAction<CategoryI[]>>;
+};
