@@ -1,17 +1,15 @@
-import { FormEvent, useRef, useState } from 'react';
+import { FormEvent, useRef } from 'react';
 
 import CategoryItem from '../../components/category/CategoryItem';
-import Success from '../../components/toasts/Success';
-import Error from '../../components/toasts/Error';
 import Alert from '../../components/toasts/Alert';
 import useCategoryContextProvider from '../../providers/useCategoryContextProvider';
 import { createCategory } from '../../api/category.api';
+import useToastContextProvider from '../../providers/useToastContextProvider';
 
 const Category = () => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const [success, setSuccess] = useState<string>('');
-  const [error, setError] = useState<string>('');
   const { categories, setCategories } = useCategoryContextProvider();
+  const { setSuccess, setError } = useToastContextProvider();
 
   const handleSubmit = async (e: FormEvent): Promise<void> => {
     e.preventDefault();
@@ -43,8 +41,6 @@ const Category = () => {
   return (
     <div className="max-w-3xl mx-auto">
       <form className=" flex justify-between mt-10" onSubmit={handleSubmit}>
-        {success ? <Success message={success} setMessage={setSuccess} /> : ''}
-        {error ? <Error message={error} setMessage={setError} /> : ''}
         <input
           type="text"
           ref={inputRef}

@@ -1,11 +1,12 @@
 import { useContext } from 'react';
 
 import { CategoryContext } from '../contexts/CategoryContext';
+import { CategoryContextI } from '../types/category.type';
 
-const useCategoryContextProvider = () => {
-  const { categories, setCategories } = useContext(CategoryContext);
+const useCategoryContextProvider = (): CategoryContextI => {
+  const categoryContext = useContext(CategoryContext);
 
-  return { categories, setCategories };
+  return categoryContext;
 };
 
 export default useCategoryContextProvider;
