@@ -70,7 +70,7 @@ const Category = () => {
       if (!isEmpty(createdContact)) {
         setSuccess('Contact has been created.');
         setCategory(createdContact);
-        setContact({} as SaveContactI);
+        setContact({ name: '', description: '', number: '' });
         return;
       }
 
